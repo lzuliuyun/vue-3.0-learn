@@ -1,8 +1,5 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
-
-Vue.use(VueRouter);
 
 const routes = [
   {
@@ -18,11 +15,20 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
   },
+  {
+    path: '/test',
+    name: 'test',
+    component: () => import(/* webpackChunkName: "test" */ '../views/Test.vue'),
+  },
+  {
+    path: '/hello',
+    name: 'hello',
+    component: () => import(/* webpackChunkName: "hello" */ '../views/Hello.vue'),
+  },
 ];
 
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
   routes,
 });
 
